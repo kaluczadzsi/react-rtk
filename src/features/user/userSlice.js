@@ -8,10 +8,11 @@ const initialState = {
   error: '',
 };
 
-const fetchUsers = createAsyncThunk('user/fetchUsers', () => {
-  return axios
-    .get('https://jsonplaceholder.typicode.com/users')
-    .then((response) => response.data.map((user) => user.id));
+const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
+  const response = await axios.get(
+    'https://jsonplaceholder.typicode.com/users'
+  );
+  return response.data;
 });
 
 const user = createSlice({
